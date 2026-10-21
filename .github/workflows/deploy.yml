@@ -1,8 +1,22 @@
 name: Deploy
-on: [push]
+on:
+  push:
+    branches: [ main ]
+
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
     steps:
       - uses: actions/checkout@v4
-      - run: echo "Build started for DisputeLens AI"
+      
+      - name: Login to GHCR
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+      
+      - name: Build Docker image
+        run: docker build -t ghcr.io/amitjha27092003/disputelens-ai:latest .
+      
+      - name: Push to GHCR
+        run: docker push ghcr.io/amitjha27092003/disputelens-ai:latest
