@@ -1,8 +1,15 @@
-name: Deploy
-on: [push]
+name: Deploy DisputeLens AI
+on:
+  push:
+    branches: [ main ]
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - run: echo "Mera code auto build ho raha hai"
+      - uses: actions/checkout@v4
+      - name: Build check
+        run: echo "DisputeLens AI build started"
+      - name: Install and Build
+        run: |
+          npm install
+          npm run build
