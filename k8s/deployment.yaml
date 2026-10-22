@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: disputelens-ai
-        image: ghcr.io/rathodrahul1706/disputelens-ai:latest
+        image: ghcr.io/amitjha27092003/disputelens-ai:latest
         ports:
         - containerPort: 3000
         env:
