@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: disputelens-ai
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: disputelens-ai
+  template:
+    metadata:
+      labels:
+        app: disputelens-ai
+    spec:
+      containers:
+      - name: disputelens-ai
+        image: ghcr.io/rathodrahul1706/disputelens-ai:latest
+        ports:
+        - containerPort: 3000
+        env:
+        - name: NODE_ENV
+          value: production
